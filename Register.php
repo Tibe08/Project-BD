@@ -1,5 +1,27 @@
 <?php
 
+require 'Konek.php';
+
+if($_POST){
+
+$username = $_POST["username"];
+$pw = $_POST["password"];
+$email = $_POST["email"];
+
+$query_sql = "INSERT INTO user (username, password, email)
+              VALUES ('$username', '$pw', '$email')";
+
+// if(isset($koneksi)){
+//     echo "Koneksi berhasil";
+// }
+if(mysqli_query($koneksi, $query_sql)){
+    header("Location: Login.php");
+} else{
+    echo "Pendaftaran Gagal : " . mysqli_error($koneksi);
+    
+}
+
+}
 ?>
 
 
@@ -10,8 +32,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Modern Flat Design Login Form Example</title>
-        <link rel="stylesheet" href="./style.css">
-
+    
     </head>
 
     <body>
@@ -23,20 +44,12 @@
                     <input type="password" placeholder="password" name="password" />
                     <input type="text" placeholder="email address" name="email" />
                     <button>create</button>
-                    <p class="message">Already registered? <a href="#">Sign In</a></p>
+                    <p class="message">Already registered? <a href="Login.php">Sign In</a></p>
                 </form>
-                <form class="login-form">
-                    <input type="text" placeholder="username" />
-                    <input type="password" placeholder="password" />
-                    <button class="fw-bold">login</button>
-                    <p class="message">Not registered? <a href="#">Create an account</a></p>
-                </form>
+                
             </div>
-        </div>
-
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-        <script src="./Jslog.js"></script>
-
+        </div> 
+<
     </body>
 
     </html>
